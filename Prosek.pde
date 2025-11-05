@@ -3,31 +3,13 @@ void setup() {
   size(1000, 500);
   background(173, 216, 230);
   float fishFattness = 14; //Change how fat the fish is!
-  float fishNumber = 400; //Change how many fish you want(looks better if more than 200 and less than 800)
+  float fishNumber = 500; //Change how many fish you want(looks better if more than 200 and less than 800)
   for (int i = 0; i < fishNumber; i ++){
-    float x = randomGaussian()*200 + 500;
-    float y = random(450) + 20;
+    float x = randomGaussian() * 300 + 760; //760 so that it looks like a school of fish swimming from right to left
+    float y = randomGaussian() * 150 + 250;
     float w = random(70, 90);
-    //red to orange
-    if (x <= 200){
-      fill(255, (x/1.8), 0);
-    }
-    //orange to yellow
-    else if (x <= 400){
-      fill(255, 128+(x/3.5), 0);
-    }
-    //yellow to green
-    else if (x <= 600){
-      fill(255-(x-345), 255, x-345);
-    }
-    //green to blue
-    else if (x <=800 ){
-      fill(0, 255-(x/6.2), x-545);
-    }
-    //blue to purple
-    else if (x <=1000 ) {
-      fill(255-(x/7.9), 0, 255-(x/7.8));
-    } 
+    colorMode(HSB, 360, 100, 100);
+    fill(x/3.8, 100, 100);
     fish(x, y, w, fishFattness);
   }
  
