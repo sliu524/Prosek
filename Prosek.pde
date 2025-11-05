@@ -1,37 +1,42 @@
 //Create your own fish drawing!
 void setup() {
-  size(1470,500);
+  size(1000,500);
   background(173, 216, 230);
-  float fishfattness = 15; //Change how fat the fish is!
-  for (int i = 0; i < 300; i ++){
-    float x = randomGaussian()*400+735;
+  float fishFattness = 14; //Change how fat the fish is!
+  float fishNumber = 400; //Change how many fish you want(looks better if more than 200 and less than 800)
+  for (int i = 0; i < fishNumber; i ++){
+    float x = randomGaussian()*200+500;
     float y = random(450)+20;
     float w = random(70, 90);
-    fish(x, y, w, fishfattness);
+    //red to orange
+    if (x <= 200){
+      fill(255,x/1.8,0);
+    }
+    //orange to yellow
+    else if (x<=400){
+      fill(255,128+x/3.5,0);
+    }
+    //yellow to green
+    else if (x<=600){
+      fill(255-(x-345),255,0+(x-345));
+    }
+    //green to blue
+    else if (x<=800){
+      fill(0, 255-(x/6.2),0+(x-545));
+    }
+    //blue to purple
+    else if (x<=1050) {
+      fill(0+(x/7.9),0,200);
+    }
+    fish(x, y, w, fishFattness);
   }
-  for (int i = 0; i < 20; i ++){
-    weed(100,200,50,2);
-  }
+ 
 }
 void fish(float x, float y, float sizeX, float sizeY){
-  float a = random(1);
-  if (a < 0.5){
-    noStroke();
-    fill(0, 0, 128);
-  } else{
-    noStroke();
-    fill(255);
-  }
+  noStroke();
   ellipse(x, y, sizeX, sizeY);
   float tailX = x + sizeX/2;
   float tailW = sizeY / 3;
   float tailH = sizeX / 7;
   triangle(tailX, y, tailX+tailW, y-tailH, tailX+tailW, y+tailH);
-}
-void weed(float x, float y, float l, float w){
-  noFill();
-  stroke(0);
-  strokeWeight(w);
-  arc(x, y, l, l, HALF_PI, PI+HALF_PI);
-  //arc(x+l, y, l, l, PI+QUARTER_PI, HALF_PI);
 }
